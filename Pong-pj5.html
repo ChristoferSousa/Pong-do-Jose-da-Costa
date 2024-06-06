@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
+</html>
+let diametro=24;
+let xbola = 300;
+let ybola = 200;
+let raio = diametro/2;
+
+let xrec = 4;   //570;
+let yrec = 200;  //200;
+let reclarg = 15;
+let recaltu = 100;
+
+let xrec2 = 580;
+let yrec2 = 200;
+let reclarg2 = 15;
+let recaltu2 = 100;
+
+let xvelo = 5;
+let yvelo =5;
+
+let meuspontos = 0;
+let pontosdooponente = 0;
+
+function setup() {
+  createCanvas(600, 400);
+}
+
+function draw() {
+  background(0);
+  
+  circle(xbola,ybola,diametro);
+  
+  retangulo();
+  
+  retangulo2();
+  
+  movimentabola();
+  
+  placar();
+  
+  marcarponto();
+}
+
+
+function movimentabola()
+{
+  xbola += xvelo;
+  ybola += yvelo;
+  
+    if (xbola + raio > width || xbola - raio < 0)
+  {
+    xvelo *= -1
+  }  
+    if (ybola + raio > height || ybola - raio < 0)
+  {
+    yvelo *= -1
+  }  
+    if (xbola > 600 || xbola < 0 || ybola > 400 || ybola < 0)
+  {
+    ybola = 0
+    xbola = 0
+  }
+}
+
+function retangulo()
+{
+  rect(xrec, yrec, reclarg, recaltu);
+  
+  if (keyIsDown (DOWN_ARROW) == true && yrec + recaltu < height)
+  {
+    yrec += 3 
+  }
+  else
+  if (keyIsDown (UP_ARROW) == true && yrec > 0)
+  {
+    yrec -= 3
+  }
+  
+    if (xbola - raio < xrec + reclarg  && ybola - raio < yrec + recaltu && ybola - raio > yrec)
+    {
+        xvelo *= -1
+    }
+}
+
+function retangulo2()
+{
+  rect(xrec2, yrec2, reclarg2, recaltu2);
+  
+  if (keyIsDown (83) == true && yrec2 + recaltu2 < height)
+  {
+    yrec2 += 3 
+  }
+  else
+  if (keyIsDown (87) == true && yrec2 > 0)
+  {
+    yrec2 -= 3
+  }
+  
+    if (xbola > xrec2 - reclarg2  && ybola - raio < yrec2 + recaltu2 && ybola + raio > yrec2 )
+    {
+        xvelo *= -1
+    }
+}
+
+function placar()
+{
+  fill(220)
+  text (meuspontos,278,26)
+  text (pontosdooponente,320,26)
+}
+
+function marcarponto()
+{
+  if (xbola + raio > 598)
+  {
+   meuspontos += 1;
+  }
+  if (xbola - raio < 2) 
+  {
+    pontosdooponente += 1;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
