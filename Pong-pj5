@@ -1,0 +1,28 @@
+let diametro=24;
+let xbola = 300;
+let ybola = 200;
+let raio = diametro/2;
+
+let xrec = 4;   //570;
+let yrec = 200;  //200;
+let reclarg = 15;
+let recaltu = 100;
+
+let xrec2 = 580;
+let yrec2 = 200;
+let reclarg2 = 15;
+let recaltu2 = 100;
+
+let xvelo = 5;
+let yvelo =5;
+
+let meuspontos = 0;
+let pontosdooponente = 0;
+
+function setup() {
+  createCanvas(600, 400);
+}
+
+function draw() {
+  background(0);
+  
